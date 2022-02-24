@@ -42,7 +42,7 @@ for event in longpoll.listen():
                     while set(temp[1:])&b != set():
                         counter = counter + 1
                         result = filter_id(city, year_old, sex, counter)
-                        if result == []:
+                        if result == [] or result == [[]]:
                             pass
                         else:
                             a = ((result[0][0]['id_profile']))
