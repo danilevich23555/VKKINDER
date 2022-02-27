@@ -1,11 +1,13 @@
 import psycopg2
+from pathlib import Path
 import os
+
 from create_db_table import display_full_name
 
 
 temp_param = []
-path = os.path.join(os.getcwd(), 'connection_db\\connection_db.txt')
-with open('connection_db\\connection_db.txt', 'r') as param:
+path = os.path.join(Path(__file__).parents[1], 'connection_db')
+with open(f"{path}\\connection_db.txt", 'r') as param:
   for string in param:
     if string.strip() == '':
       display_full_name()

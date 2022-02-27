@@ -1,6 +1,6 @@
 import requests
 import time
-from settings import tokens
+from settings import token
 
 
 
@@ -13,7 +13,7 @@ def get_VK_URL(city, year_old, sex, counter):
         sex = 1
     params = {
         'city': city,
-        'access_token': tokens()[1],
+        'access_token': token()[1],
         'v': '5.131',
         'fields': 'sex, bdate, city, country, home_town, relation',
         'count': 1,
@@ -36,7 +36,7 @@ def get_VK_URL_foto_like(owner_id):
         'owner_id': owner_id,
         'album_id': 'profile',
         'extended': 1,
-        'access_token': tokens()[1],
+        'access_token': token()[1],
         'v': '5.131'
     }
     time.sleep(0.8)

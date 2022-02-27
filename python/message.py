@@ -2,12 +2,12 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 from functions import function
 from db import write_db
-from settings import tokens
+from settings import token
 
 
 
 
-vk = vk_api.VkApi(token=tokens()[0])
+vk = vk_api.VkApi(token=token()[0])
 longpoll = VkLongPoll(vk)
 
 

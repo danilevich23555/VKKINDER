@@ -1,9 +1,9 @@
 from user import get_VK_URL_user
 from find_users import filter_id
-from db import  select_count_id
+from db import select_count_id
 
 
-def function (id):
+def function(id):
     temp = select_count_id(id)
     if temp == [[]]:
         counter = 0
