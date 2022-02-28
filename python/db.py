@@ -1,7 +1,6 @@
 import psycopg2
 from pathlib import Path
 import os
-
 from create_db_table import display_full_name
 
 
@@ -24,7 +23,7 @@ password = temp_param[2]
 host = temp_param[3]
 port = temp_param[4]
 
-print(host)
+
 
 
 def write_db(id_user,id_user_find,url_profile,url_foto_1,url_foto_2,url_foto_3):

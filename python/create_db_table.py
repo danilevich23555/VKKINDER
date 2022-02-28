@@ -1,6 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
 import psycopg2
+import os
+from pathlib import Path
+path = os.path.join(Path(__file__).parents[1], 'connection_db')
+
+
+
 
 def display_full_name():
     database1 = database.get()
@@ -16,18 +22,22 @@ def display_full_name():
         port=port1
     )
     cur = con.cursor()
-    print("Database opened successfully")
-    postgres_insert_query = """create table vkkinder (id_user integer, id_user_find integer, url_profile varchar(300), 
-    url_foto_1 varchar(300), url_foto_2 varchar(300), url_foto_3 varchar(300));"""
-    cur.execute(postgres_insert_query)
-    con.commit()
-    messagebox.showinfo('1', 'Данные занесены, таблица vkkinder создана.')
-    with open('connection_db\\connection_db.txt', 'w')as param_con:
-        param_con.write(f"{database1}\n")
-        param_con.write(f"{user1}\n")
-        param_con.write(f"{password1}\n")
-        param_con.write(f"{host1}\n")
-        param_con.write(f"{port1}")
+    try:
+        postgres_insert_query = """create table vkkinder (id_user integer, id_user_find integer, url_profile varchar(300), 
+        url_foto_1 varchar(300), url_foto_2 varchar(300), url_foto_3 varchar(300));"""
+        cur.execute(postgres_insert_query)
+        con.commit()
+        messagebox.showinfo('1', 'Данные занесены, таблица vkkinder создана.')
+        with open(f"{path}\\connection_db.txt", 'w')as param_con:
+            param_con.write(f"{database1}\n")
+            param_con.write(f"{user1}\n")
+            param_con.write(f"{password1}\n")
+            param_con.write(f"{host1}\n")
+            param_con.write(f"{port1}")
+    except psycopg2.errors.DuplicateTable:
+        messagebox.showinfo('2', 'база данных уже создана, закройте окно "Создание базы данных Postgressql" \n '
+                                 'и продолжайте работу')
+        print('база данных уже создана, закройте окно и продолжайте работу')
 
 
 
@@ -81,8 +91,7 @@ port_entry.place(x=220,y=240)
 
 button1 = Button(window, text="Apply", height=1, width=5, command=display_full_name)
 button1.place(x=250, y=320)
-button2 = Button(window, text="Chanel", height=1, width=5)
-button2.place(x=300, y=320)
+
 
 window.mainloop()
 
