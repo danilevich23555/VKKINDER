@@ -1,22 +1,14 @@
 import psycopg2
 from pathlib import Path
 import os
-from create_db_table import display_full_name
+from create_db_or_no import create_db_write_txt
 
-
+create_db_write_txt()
 temp_param = []
 path = os.path.join(Path(__file__).parents[1], 'connection_db')
 with open(f"{path}\\connection_db.txt", 'r') as param:
   for string in param:
-    if string.strip() == '':
-      display_full_name()
-    else:
       temp_param.append(string.strip())
-      print(string.strip())
-
-
-
-
 database = temp_param[0]
 user = temp_param[1]
 password = temp_param[2]
@@ -35,7 +27,6 @@ def write_db(id_user,id_user_find,url_profile,url_foto_1,url_foto_2,url_foto_3):
     port=port
   )
   cur = con.cursor()
-  print("Database opened successfully")
   postgres_insert_query = """INSERT INTO vkkinder (id_user,id_user_find,url_profile,url_foto_1,url_foto_2,url_foto_3) 
   VALUES (%s,%s,%s,%s,%s,%s);"""
   record_to_insert = (id_user, id_user_find, url_profile, url_foto_1, url_foto_2, url_foto_3)
