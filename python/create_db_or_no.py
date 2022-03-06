@@ -55,7 +55,7 @@ def create_db_write_txt():
             port=temp_param[4]
         )
         cur = con.cursor()
-        postgres_insert_query = """create table vkkinder (id_user integer, id_user_find integer, url_profile varchar(300), 
+        postgres_insert_query = """create table if not EXISTS vkkinder (id_user integer, id_user_find integer, url_profile varchar(300), 
             url_foto_1 varchar(300), url_foto_2 varchar(300), url_foto_3 varchar(300));"""
         cur.execute(postgres_insert_query)
         con.commit()

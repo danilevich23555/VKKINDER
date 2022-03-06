@@ -1,6 +1,7 @@
 import requests
 import datetime
 from settings import token
+import json
 
 
 def get_VK_URL_user(owner_id):
